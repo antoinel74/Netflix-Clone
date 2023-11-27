@@ -3,7 +3,7 @@ import React from "react";
 function Navbar() {
   return (
     <nav className="flex justify-between mt-2">
-      <div className="flex items-center">
+      <div className="flex  ml-4 items-center">
         <p>TMDB</p>
       </div>
       <div>

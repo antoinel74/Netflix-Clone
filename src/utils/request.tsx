@@ -76,18 +76,17 @@ export const fetchTrendingTVShows = async (): Promise<TVShows[]> => {
   }
 };
 
-export const fetchMovieDetails = async (id: number): Promise<Movie> => {
+export const fetchMovieDetails = async (movieId: number): Promise<Movie> => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+      `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
       options
     );
     if (!response.ok) {
       throw new Error("Network error");
     }
     const data = await response.json();
-    const movies: Movie = data.results;
-    return movies;
+    return data as Movie;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch data");

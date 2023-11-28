@@ -1,44 +1,50 @@
+"use client";
+import { useEffect, useState } from "react";
 import { fetchMovieDetails } from "@/utils/request";
 
-interface MovieDetailsProps {
-  params: {
-    id: string;
-    poster_path: string;
-    title: string;
-  };
+export interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+  popularity: number;
+  vote_average: number;
+  release_date: string;
 }
 
-const MovieDetailsView: React.FC<MovieDetailsProps> = ({ params }) => {
-  const { id, poster_path, title } = params;
-  if (!id) {
-    return <div>No movie ID provided!</div>;
-  }
+function MovieDetailsView() {
+  const [movieDetails, setMovieDetails] = useState<Movie>();
 
-  const RenderMovieDetails = async () => {
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idParam = urlParams.get("id");
+
+    if (idParam) {
+      const id = parseInt(idParam, 10);
+      fetchDetails(id);
+    }
+  }, []);
+
+  const fetchDetails = async (id: number) => {
     try {
-      const movieDetails = await fetchMovieDetails(parseInt(id));
-      console.log(movieDetails);
-      return (
-        <div>
-          <img
-            className="h-50 w-auto object-contains object-center transition-opacity duration-220"
-            src={`https://image.tmdb.org/t/p/w500/${id}`}
-            alt={title}
-          />
-          <h2>{title}</h2>
-          <h2>{id}</h2>
-        </div>
-      );
+      const fetchedDetails: Movie = await fetchMovieDetails(id);
+      setMovieDetails(fetchedDetails);
     } catch (error) {
-      console.error("Failed to fetch movie details", error);
-      return (
-        <div>
-          <p>An error has occured</p>
-        </div>
-      );
+      console.error("Error fetching movies:", error);
     }
   };
-  return <>{RenderMovieDetails()}</>;
-};
+
+  if (!movieDetails) {
+    return <div>Loading...</div>;
+  }
+
+  const { title } = movieDetails;
+
+  return (
+    <div>
+      <h2>{title}</h2>
+    </div>
+  );
+}
 
 export default MovieDetailsView;

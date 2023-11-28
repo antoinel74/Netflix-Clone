@@ -25,7 +25,7 @@ function Hero({ title, backdrop_path, overview }: CardProps) {
     <div className="relative">
       <figure className="relative aspect-video">
         <img
-          className="absolute w-full  bg-cover bg-center object-cover opacity-90"
+          className="absolute w-full  bg-cover bg-center object-cover opacity-70"
           src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
           style={maskStyle}
         ></img>
@@ -34,10 +34,10 @@ function Hero({ title, backdrop_path, overview }: CardProps) {
         {" "}
         <h2 className="text-6xl font-bold mb-2">{title}</h2>
         <p className="w-4/6 mb-6">{overview}</p>
-        <button className="bg-white hover:opacity-90 text-black font-semibold py-2 px-4 rounded mr-2">
-          Rate This
+        <button className="bg-white opacity-90 hover:opacity-70 text-black font-semibold py-2 px-4 rounded mr-2">
+          Rate This !
         </button>
-        <button className="bg-white opacity-75 hover:opacity-90 text-black font-semibold py-2 px-4 rounded">
+        <button className="bg-white opacity-90 hover:opacity-70 text-black font-semibold py-2 px-4 rounded">
           Add To Your List +
         </button>
       </div>

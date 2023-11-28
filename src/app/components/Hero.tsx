@@ -49,10 +49,10 @@ function Hero({
           </span>
         </p>
         <p className="w-4/6 mb-6">{overview}</p>
-        <button className="bg-white hover:opacity-80 text-black font-medium py-2 px-4 mr-2">
+        <button className="bg-white hover:opacity-80 text-black font-medium py-2 px-4 mr-2 rounded">
           &gt; Rate This
         </button>
-        <button className="bg-slate-500 opacity-90 hover:opacity-70 text-white font-medium py-2 px-4">
+        <button className="bg-slate-500 opacity-90 hover:opacity-70 text-white font-medium py-2 px-4 rounded">
           + Add To Your List
         </button>
       </div>

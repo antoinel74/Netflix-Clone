@@ -41,7 +41,7 @@ export default function Home() {
           <Hero {...firstMovie} />
         </div>
       )}
-      <h2 className="text-xl mb-2">Trending Movies</h2>
+      <h2 className="text-xl xl:-mt-40 mb-2">Trending Movies</h2>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 overflow-x-auto w-full hide-scrollbar cursor-pointer">
         <div className="flex whitespace-nowrap">
           {movies.map((movie: Movie) => (

@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import MovieDetails from "../movies/[id]/page";
 import { convertDateFormat } from "@/utils/convertDate";
-import { Movie } from "../page";
 
 interface CardProps {
-  movie: Movie;
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
 }
 
 function Card({

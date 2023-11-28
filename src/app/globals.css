@@ -18,7 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(13, 36, 63);
+  background: rgb(0, 0, 0);
 }
 
 /* HIDE SCROLL-X BAR */

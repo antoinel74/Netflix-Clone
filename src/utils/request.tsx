@@ -1,6 +1,6 @@
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-interface Options {
+export interface Options {
   method: string;
   headers: {
     accept: string;
@@ -8,7 +8,7 @@ interface Options {
   };
 }
 
-interface TVShows {
+export interface TVShows {
   id: number;
   title: string;
   overview: string;
@@ -18,7 +18,7 @@ interface TVShows {
   first_air_date: string;
 }
 
-interface Movie {
+export interface Movie {
   id: number;
   title: string;
   overview: string;
@@ -26,6 +26,7 @@ interface Movie {
   popularity: number;
   vote_average: number;
   release_date: string;
+  backdrop_path: string;
 }
 
 const options: Options = {

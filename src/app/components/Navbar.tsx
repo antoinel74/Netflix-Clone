@@ -2,7 +2,7 @@ import React from "react";
 
 function Navbar() {
   return (
-    <nav className="flex justify-between mt-2">
+    <nav className="absolute flex justify-between mt-2">
       <p className="flex  ml-4 items-center">TMDB</p>
       <div className="flex flex-wrap items-stretch">
         <input

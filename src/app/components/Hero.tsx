@@ -39,7 +39,7 @@ function Hero({
           style={maskStyle}
         ></img>
       </figure>
-      <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+      <div className="absolute top-1/2 left-4 transform -translate-y-1/2 ml-2">
         {" "}
         <h2 className="text-6xl font-bold mb-2">{title}</h2>
         <p className="font-semibold text-lime-600 mb-4">

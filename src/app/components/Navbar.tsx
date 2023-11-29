@@ -2,8 +2,10 @@ import React from "react";
 
 function Navbar() {
   return (
-    <nav className="absolute flex justify-between mt-4 w-full z-10">
-      <p className="flex ml-4 items-center">TMDB</p>
+    <nav className="absolute flex justify-between mt-6 w-full z-10">
+      <a href="/" className="ml-4 grayscale contrast-200">
+        <img src="/logo.png" className="w-1/2" alt="logo"></img>
+      </a>
       <div className="flex items-stretch">
         <input
           type="search"

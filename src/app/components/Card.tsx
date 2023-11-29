@@ -34,9 +34,7 @@ function Card({
             {title}
           </h2>
           <div className="flex justify-between">
-            <a href={"/movies/" + id} className="text-sm font-semibold">
-              Learn More
-            </a>
+            <p className="text-sm font-semibold">Learn More</p>
             <p className="text-sm opacity-50">
               {(vote_average * 10).toFixed()}%
               <span className="ml-1">- {convertDateFormat(release_date)}</span>

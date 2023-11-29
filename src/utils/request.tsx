@@ -29,6 +29,18 @@ export interface Movie {
   backdrop_path: string;
 }
 
+export interface MovieDetails {
+  id: number;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  release_date: string;
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
+}
+
 const options: Options = {
   method: "GET",
   headers: {
@@ -77,7 +89,9 @@ export const fetchTrendingTVShows = async (): Promise<TVShows[]> => {
   }
 };
 
-export const fetchMovieDetails = async (movieId: number): Promise<Movie> => {
+export const fetchMovieDetails = async (
+  movieId: number
+): Promise<MovieDetails> => {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
@@ -87,7 +101,7 @@ export const fetchMovieDetails = async (movieId: number): Promise<Movie> => {
       throw new Error("Network error");
     }
     const data = await response.json();
-    return data as Movie;
+    return data as MovieDetails;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch data");

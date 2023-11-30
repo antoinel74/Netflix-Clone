@@ -60,9 +60,9 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="mx-6">
+      {/*       <div className="mx-6">
         <h2 className="text-xl mb-4 font-medium">My List</h2>
-      </div>
+      </div> */}
     </div>
   );
 }

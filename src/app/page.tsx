@@ -12,6 +12,7 @@ export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [actionMovies, setActionMovies] = useState<Movie[]>([]);
   const [documentaries, setDocumentaries] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -23,49 +24,57 @@ export default function Home() {
         setMovies(fetchedMovies);
         setActionMovies(fetchedActionMovies);
         setDocumentaries(fetchedDocumentaries);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching movies:", error);
+        setIsLoading(false);
       }
     };
 
     fetchMovies();
   }, []);
 
-  const firstMovie = movies.length > 0 ? movies[0] : null;
   const randIndex = movies.length > 0 ? Math.floor(Math.random() * 20) : null;
   const randMovie = randIndex !== null ? movies[randIndex] : null;
 
   return (
     <div className="w-full">
-      {firstMovie && <Hero {...firstMovie} />}
-      <div className="mx-6">
-        <h2 className="text-xl lg:-mt-44 mb-4 font-medium">Trending Movies</h2>
-        <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
-          {movies.map((movie: Movie) => (
-            <Card key={movie.id} {...movie} />
-          ))}
+      {isLoading ? (
+        <div className="w-full h-screen flex justify-center items-center">
+          Loading ...{" "}
         </div>
-      </div>
-      <div className="mx-6">
-        <h2 className="text-xl mb-4 font-medium">Action Movies</h2>
-        <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
-          {actionMovies.map((movie: Movie) => (
-            <Card key={movie.id} {...movie} />
-          ))}
-        </div>
-      </div>
-      <div>{randMovie && <Hero {...randMovie} />}</div>
-      <div className="mx-6">
-        <h2 className="text-xl mb-4 font-medium">Documentaries</h2>
-        <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
-          {documentaries.map((movie: Movie) => (
-            <Card key={movie.id} {...movie} />
-          ))}
-        </div>
-      </div>
-      {/*       <div className="mx-6">
-        <h2 className="text-xl mb-4 font-medium">My List</h2>
-      </div> */}
+      ) : (
+        <>
+          <Hero {...movies[0]} />
+          <div className="mx-6">
+            <h2 className="text-xl lg:-mt-44 mb-4 font-medium">
+              Trending Movies
+            </h2>
+            <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
+              {movies.map((movie: Movie) => (
+                <Card key={movie.id} {...movie} />
+              ))}
+            </div>
+          </div>
+          <div className="mx-6">
+            <h2 className="text-xl mb-4 font-medium">Action Movies</h2>
+            <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
+              {actionMovies.map((movie: Movie) => (
+                <Card key={movie.id} {...movie} />
+              ))}
+            </div>
+          </div>
+          <div>{randMovie && <Hero {...randMovie} />}</div>
+          <div className="mx-6">
+            <h2 className="text-xl mb-4 font-medium">Documentaries</h2>
+            <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
+              {documentaries.map((movie: Movie) => (
+                <Card key={movie.id} {...movie} />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

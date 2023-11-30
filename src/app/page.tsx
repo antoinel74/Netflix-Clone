@@ -32,6 +32,8 @@ export default function Home() {
   }, []);
 
   const firstMovie = movies.length > 0 ? movies[0] : null;
+  const randIndex = movies.length > 0 ? Math.floor(Math.random() * 20) : null;
+  const randMovie = randIndex !== null ? movies[randIndex] : null;
 
   return (
     <div className="w-full">
@@ -52,6 +54,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <div>{randMovie && <Hero {...randMovie} />}</div>
       <div className="mx-6">
         <h2 className="text-xl mb-4 font-medium">Documentaries</h2>
         <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">

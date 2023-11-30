@@ -3,9 +3,17 @@ import React from "react";
 function Navbar() {
   return (
     <nav className="gap-1 mt-6 sm:flex justify-between w-full z-10">
-      <a href="/" className=" mb-2 grayscale contrast-200">
-        <img src="/logo.png" className="w-28 ml-4 mt-2" alt="logo"></img>
-      </a>
+      <div className="flex gap-8 align-center items-center ml-4">
+        <a href="/" className="grayscale contrast-200">
+          <img src="/logo.svg" className="w-14" alt="logo"></img>
+        </a>
+        <a href="/" className="opacity-80 hover:opacity-100">
+          Movies
+        </a>
+        <a href="/" className="opacity-80 hover:opacity-100">
+          TV Shows
+        </a>
+      </div>
       <div className="flex items-stretch mt-4 sm:mt-0 ml-4">
         <input
           type="search"

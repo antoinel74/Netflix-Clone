@@ -2,9 +2,9 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-4 leading-8 border-zinc-700 border-b my-24">
+    <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-4 leading-8 border-zinc-700 border-t my-24">
       {" "}
-      <div className="md:col-span-4 ml-6 lg:ml-0 py-4">
+      <div className="md:col-span-4 ml-6 lg:ml-0 py-4 mt-12">
         <div className="flex gap-2">
           <img
             src="/social_icons/square-facebook.svg"

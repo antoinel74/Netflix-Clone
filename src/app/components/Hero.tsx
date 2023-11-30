@@ -1,13 +1,6 @@
 import React from "react";
 import { convertDateFormat } from "@/utils/convertDate";
-
-interface CardProps {
-  title: string;
-  backdrop_path: string;
-  overview: string;
-  vote_average: number;
-  release_date: string;
-}
+import { Movie } from "@/utils/request";
 
 function Hero({
   title,
@@ -15,7 +8,7 @@ function Hero({
   overview,
   vote_average,
   release_date,
-}: CardProps) {
+}: Movie) {
   const maskStyle = {
     WebkitMaskImage: `linear-gradient(
               rgba(0, 0, 0, 0) 0%,

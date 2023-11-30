@@ -1,19 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchTrendingMovies } from "@/utils/request";
+import { Movie, fetchTrendingMovies } from "@/utils/request";
 import Card from "./components/Card";
 import Hero from "./components/Hero";
-
-export interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  popularity: number;
-  vote_average: number;
-  release_date: string;
-  backdrop_path: string;
-}
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -42,7 +31,7 @@ export default function Home() {
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 overflow-x-auto w-full hide-scrollbar cursor-pointer">
         <div className="flex whitespace-nowrap mx-6">
           {movies.map((movie: Movie) => (
-            <Card original_title={""} key={movie.id} {...movie} />
+            <Card key={movie.id} {...movie} />
           ))}
         </div>
       </div>

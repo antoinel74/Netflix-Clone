@@ -1,33 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchMovieDetails, fetchSimilarMovies } from "@/utils/request";
+import {
+  MovieDetails,
+  fetchMovieDetails,
+  fetchSimilarMovies,
+} from "@/utils/request";
 import { useParams } from "next/navigation";
 import { convertDateFormat } from "@/utils/convertDate";
 import Card from "@/app/components/Card";
 
-export interface Genre {
-  id: number;
-  name: string;
-}
-
-export interface MovieDetailsProps {
-  id: number;
-  original_title: string;
-  overview: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-  poster_path: string;
-  genres: Genre[];
-}
-
 const MovieDetailsView = () => {
   const { id } = useParams();
-  const [movieDetails, setMovieDetails] = useState<MovieDetailsProps | null>(
-    null
-  );
-  const [similarMovies, setSimilarMovies] = useState<MovieDetailsProps[]>([]);
+  const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
+  const [similarMovies, setSimilarMovies] = useState<MovieDetails[]>([]);
 
   const maskStyle = {
     WebkitMaskImage: `linear-gradient(
@@ -55,8 +40,9 @@ const MovieDetailsView = () => {
       const details = await fetchMovieDetails(movieDetailsId);
       const similarMoviesData = await fetchSimilarMovies(movieDetailsId);
 
-      console.log("Movie Details:", details); // TESTING //
+      console.log("Movie Details:", details);
       console.log("Similar Movies", similarMoviesData);
+
       setMovieDetails(details);
       if (similarMoviesData && similarMoviesData.results) {
         setSimilarMovies(similarMoviesData.results);

@@ -1,23 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { convertDateFormat } from "@/utils/convertDate";
+import { Movie } from "@/utils/request";
 
-interface CardProps {
-  id: number;
-  title: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
-  original_title: string;
-}
-
-function Card({
-  id,
-  title,
-  poster_path,
-  release_date,
-  vote_average,
-}: CardProps) {
+function Card({ id, title, poster_path, release_date, vote_average }: Movie) {
   return (
     <div
       key={id}

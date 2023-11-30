@@ -11,7 +11,7 @@ function Card({ id, title, poster_path, release_date, vote_average }: Movie) {
     >
       <Link href={"/movies/" + id}>
         <img
-          className="h-50 w-auto object-contains object-center transition-opacity duration-220"
+          className="h-50 w-auto object-contains object-center transition-opacity duration-220 rounded-sm"
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
           alt={title}
         />
@@ -19,11 +19,11 @@ function Card({ id, title, poster_path, release_date, vote_average }: Movie) {
           <h2 className="text-lg font-semibold mb-2 overflow-hidden line-clamp-2">
             {title}
           </h2>
-          <div className="flex text-sm justify-between opacity-50">
-            <p className="font-semibold">Learn More</p>
-            <p>
+          <div className="flex text-sm justify-between">
+            <p className="opacity-50 hover:opacity-90">Learn More</p>
+            <p className="opacity-50">
               {(vote_average * 10).toFixed()}%
-              <span className="ml-1">- {convertDateFormat(release_date)}</span>
+              <span className="ml-1">| {convertDateFormat(release_date)}</span>
             </p>
           </div>
         </div>

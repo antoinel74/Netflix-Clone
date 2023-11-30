@@ -60,16 +60,6 @@ export interface SimilarMovies {
   genres: Genre[];
 }
 
-export interface TVShows {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  popularity: number;
-  vote_average: number;
-  first_air_date: string;
-}
-
 // FETCHING //
 export const fetchTrendingMovies = async (): Promise<Movie[]> => {
   try {
@@ -87,7 +77,7 @@ export const fetchTrendingMovies = async (): Promise<Movie[]> => {
     return movies;
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch trending movies");
   }
 };
 
@@ -106,7 +96,7 @@ export const fetchMovieDetails = async (
     return data as MovieDetails;
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch movie details");
   }
 };
 
@@ -125,26 +115,26 @@ export const fetchSimilarMovies = async (
     return data as SimilarMovies;
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch similar movies");
   }
 };
 
-export const fetchTrendingTVShows = async (): Promise<TVShows[]> => {
+export const fetchMovieByGender = async (
+  genderId: number
+): Promise<Movie[]> => {
   try {
     const response = await fetch(
-      "https://api.themoviedb.org/3/trending/tv/day",
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=%20${genderId}`,
       options
     );
     if (!response.ok) {
       throw new Error("Network error");
     }
-
     const data = await response.json();
-    const tvShows: TVShows[] = data.results;
-    console.log(tvShows);
-    return tvShows;
+    const moviesByGender: Movie[] = data.results;
+    return moviesByGender;
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch movies by gender");
   }
 };

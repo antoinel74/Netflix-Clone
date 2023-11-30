@@ -100,14 +100,12 @@ const MovieDetailsView = () => {
           + Add To Your List
         </button>
       </div>
-      <div className="absolute w-full -mt-36">
+      <div className="w-full px-6 -mt-36">
         <h3 className="text-xl mx-6 mb-4">Similar Movies</h3>
-        <div className="mb-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 overflow-x-auto w-full hide-scrollbar cursor-pointer">
-          <div className="flex whitespace-nowrap mx-6">
-            {similarMovies.slice(0, 10).map((movie: MovieDetails) => (
-              <Card title={movie.original_title} key={movie.id} {...movie} />
-            ))}
-          </div>
+        <div className="mb-4 flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 overflow-x-auto w-full hide-scrollbar cursor-pointer">
+          {similarMovies.slice(0, 10).map((movie: MovieDetails) => (
+            <Card title={movie.original_title} key={movie.id} {...movie} />
+          ))}
         </div>
       </div>
     </div>

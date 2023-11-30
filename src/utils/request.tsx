@@ -28,6 +28,10 @@ export interface Movie {
   release_date: string;
   backdrop_path: string;
 }
+export interface Genre {
+  id: number;
+  name: string;
+}
 
 export interface MovieDetails {
   id: number;
@@ -39,6 +43,19 @@ export interface MovieDetails {
   vote_average: number;
   vote_count: number;
   popularity: number;
+  runtime: number;
+  genres: Genre[];
+}
+
+export interface SimilarMovies {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
+  original_title: string;
+  results: [];
+  genres: Genre[];
 }
 
 const options: Options = {
@@ -102,6 +119,25 @@ export const fetchMovieDetails = async (
     }
     const data = await response.json();
     return data as MovieDetails;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch data");
+  }
+};
+
+export const fetchSimilarMovies = async (
+  movieId: number
+): Promise<SimilarMovies> => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network error");
+    }
+    const data = await response.json();
+    return data as SimilarMovies;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch data");

@@ -8,6 +8,7 @@ interface CardProps {
   poster_path: string;
   release_date: string;
   vote_average: number;
+  original_title: string;
 }
 
 function Card({
@@ -20,8 +21,7 @@ function Card({
   return (
     <div
       key={id}
-      className="relative bg-dark flex flex-col mr-4"
-      style={{ minWidth: "250px" }}
+      className="relative bg-dark flex flex-col mr-4 min-w-[200px] lg:min-w-[250px]"
     >
       <Link href={"/movies/" + id}>
         <img
@@ -33,9 +33,9 @@ function Card({
           <h2 className="text-lg font-semibold mb-2 overflow-hidden line-clamp-2">
             {title}
           </h2>
-          <div className="flex justify-between">
-            <p className="text-sm font-semibold">Learn More</p>
-            <p className="text-sm opacity-50">
+          <div className="flex text-sm justify-between opacity-50">
+            <p className="font-semibold">Learn More</p>
+            <p>
               {(vote_average * 10).toFixed()}%
               <span className="ml-1">- {convertDateFormat(release_date)}</span>
             </p>

@@ -43,7 +43,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="md:col-span-1 hidden lg:block">
+        <div className="md:col-span-1 hidden md:block">
           <ul>
             <li>
               <a href="/" className="opacity-70 hover:opacity-90">
@@ -57,7 +57,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="md:col-span-1 hidden lg:block  pb-12">
+        <div className="md:col-span-1 hidden md:block  pb-12">
           <ul>
             <li>
               <a href="/" className="opacity-70 hover:opacity-90">
@@ -77,7 +77,7 @@ function Footer() {
           </ul>
         </div>
         <div className="md:col-span-1 hidden lg:block mx-auto">
-          <button className="border p-1 rounded-sm opacity-70 hover:bg-zinc-800">
+          <button className="border p-1 px-2 rounded-sm opacity-70 hover:bg-zinc-800">
             Subscribe Now
           </button>
         </div>

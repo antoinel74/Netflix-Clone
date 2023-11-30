@@ -104,36 +104,9 @@ const MovieDetailsView = () => {
         <h3 className="text-xl mx-6 mb-4">Similar Movies</h3>
         <div className="mb-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 overflow-x-auto w-full hide-scrollbar cursor-pointer">
           <div className="flex whitespace-nowrap mx-6">
-            <Card
-              title={similarMovies[0].original_title}
-              key={similarMovies[0].id}
-              {...similarMovies[0]}
-            />
-            <Card
-              title={similarMovies[1].original_title}
-              key={similarMovies[1].id}
-              {...similarMovies[1]}
-            />
-            <Card
-              title={similarMovies[2].original_title}
-              key={similarMovies[2].id}
-              {...similarMovies[2]}
-            />
-            <Card
-              title={similarMovies[3].original_title}
-              key={similarMovies[3].id}
-              {...similarMovies[3]}
-            />
-            <Card
-              title={similarMovies[4].original_title}
-              key={similarMovies[4].id}
-              {...similarMovies[4]}
-            />
-            <Card
-              title={similarMovies[5].original_title}
-              key={similarMovies[5].id}
-              {...similarMovies[5]}
-            />
+            {similarMovies.slice(0, 10).map((movie: MovieDetails) => (
+              <Card title={movie.original_title} key={movie.id} {...movie} />
+            ))}
           </div>
         </div>
       </div>

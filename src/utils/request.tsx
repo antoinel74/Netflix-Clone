@@ -1,5 +1,14 @@
+// API CONNECT //
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const options: Options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${apiKey}`,
+  },
+};
 
+// INTERFACES //
 export interface Options {
   method: string;
   headers: {
@@ -8,14 +17,9 @@ export interface Options {
   };
 }
 
-export interface TVShows {
+export interface Genre {
   id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  popularity: number;
-  vote_average: number;
-  first_air_date: string;
+  name: string;
 }
 
 export interface Movie {
@@ -28,10 +32,7 @@ export interface Movie {
   vote_average: number;
   release_date: string;
   backdrop_path: string;
-}
-export interface Genre {
-  id: number;
-  name: string;
+  genres: Genre[];
 }
 
 export interface MovieDetails {
@@ -59,14 +60,17 @@ export interface SimilarMovies {
   genres: Genre[];
 }
 
-const options: Options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${apiKey}`,
-  },
-};
+export interface TVShows {
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+  popularity: number;
+  vote_average: number;
+  first_air_date: string;
+}
 
+// FETCHING //
 export const fetchTrendingMovies = async (): Promise<Movie[]> => {
   try {
     const response = await fetch(
@@ -81,26 +85,6 @@ export const fetchTrendingMovies = async (): Promise<Movie[]> => {
     const movies: Movie[] = data.results;
     console.log(movies);
     return movies;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch data");
-  }
-};
-
-export const fetchTrendingTVShows = async (): Promise<TVShows[]> => {
-  try {
-    const response = await fetch(
-      "https://api.themoviedb.org/3/trending/tv/day",
-      options
-    );
-    if (!response.ok) {
-      throw new Error("Network error");
-    }
-
-    const data = await response.json();
-    const tvShows: TVShows[] = data.results;
-    console.log(tvShows);
-    return tvShows;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch data");
@@ -139,6 +123,26 @@ export const fetchSimilarMovies = async (
     }
     const data = await response.json();
     return data as SimilarMovies;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch data");
+  }
+};
+
+export const fetchTrendingTVShows = async (): Promise<TVShows[]> => {
+  try {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/trending/tv/day",
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network error");
+    }
+
+    const data = await response.json();
+    const tvShows: TVShows[] = data.results;
+    console.log(tvShows);
+    return tvShows;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch data");

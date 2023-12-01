@@ -49,7 +49,7 @@ export default function Home() {
       ) : (
         <>
           <Hero {...movies[0]} />
-          <div className="mx-6">
+          <div className="mx-10">
             <h2 className="text-xl lg:-mt-44 mb-4 font-medium">
               Trending Movies
             </h2>
@@ -59,7 +59,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="mx-6">
+          <div className="mx-10">
             <h2 className="text-xl mb-4 font-medium">Action Movies</h2>
             <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
               {actionMovies.map((movie: Movie) => (
@@ -68,7 +68,7 @@ export default function Home() {
             </div>
           </div>
           <div>{randMovie && <Hero {...randMovie} />}</div>
-          <div className="mx-6">
+          <div className="mx-10">
             <h2 className="text-xl mb-4 font-medium">Documentaries</h2>
             <div className="flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
               {documentaries.map((movie: Movie) => (

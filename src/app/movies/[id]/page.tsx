@@ -74,7 +74,7 @@ const MovieDetailsView = () => {
         ></img>
       </figure>
 
-      <div className="absolute z-2 absolute top-1/3 left-4 transform -translate-y-1/3 mx-2 sm:mx-10">
+      <div className="absolute z-2 absolute top-1/4 left-4 transform -translate-y-1/4 mx-2 sm:mx-10">
         <h2 className="text-4xl font-semibold">
           {movieDetails.original_title}
         </h2>
@@ -103,8 +103,8 @@ const MovieDetailsView = () => {
           + Add To Your List
         </button>
       </div>
-      <div className="w-full px-6 -mt-36">
-        <h3 className="text-xl mx-6 mb-4">Similar Movies</h3>
+      <div className="w-full px-10 -mt-36">
+        <h3 className="text-xl mb-4">Similar Movies</h3>
         <div className="mb-4 flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 overflow-x-auto w-full hide-scrollbar cursor-pointer">
           {similarMovies.slice(0, 10).map((movie: MovieDetails) => (
             <Card title={movie.original_title} key={movie.id} {...movie} />

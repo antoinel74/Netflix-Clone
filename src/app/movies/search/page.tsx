@@ -55,8 +55,8 @@ const SearchPage = () => {
 
   return (
     <div className="mx-12 mt-12 py-12">
-      <h2 className="text-xl mb-4 font-medium">
-        Your search for &quot; {query} &quot; :
+      <h2 className="text-xl mb-6 font-medium">
+        Search results for &quot; {query} &quot; :
       </h2>
       <div className="flex sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
         {searchResults.map((movie: Movie) => (

@@ -138,3 +138,24 @@ export const fetchMovieByGender = async (
     throw new Error("Failed to fetch movies by gender");
   }
 };
+
+export const fetchSearchResults = async (
+  searchInput: string
+): Promise<Movie[]> => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${searchInput}&include_adult=false&language=en-US&page=1`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network error");
+    }
+    const data = await response.json();
+    const searchResults: Movie[] = data.results;
+    console.log(searchResults);
+    return searchResults;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch movies by gender");
+  }
+};

@@ -41,7 +41,10 @@ export default function Home() {
     <div className="w-full">
       {isLoading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          Loading ...{" "}
+          <div
+            className="w-12 h-12 rounded-full animate-spin
+        border border-solid border-gray-600 border-t-transparent"
+          ></div>
         </div>
       ) : (
         <>

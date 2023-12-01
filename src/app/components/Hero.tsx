@@ -1,8 +1,10 @@
 import React from "react";
 import { convertDateFormat } from "@/utils/convertDate";
 import { Movie } from "@/utils/request";
+import Link from "next/link";
 
 function Hero({
+  id,
   title,
   backdrop_path,
   overview,
@@ -42,12 +44,16 @@ function Hero({
           </span>
         </p>
         <p className="w-4/6 mb-6 hidden lg:block ">{overview}</p>
-        <button className="bg-white hover:bg-slate-200 text-black font-medium py-2 px-4 mr-2 rounded">
-          Rate This
-        </button>
-        <button className="bg-slate-800 opacity-90 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded">
-          + Add To Your List
-        </button>
+        <Link href={`/movies/${id}`}>
+          <button className="bg-white hover:bg-slate-200 text-black font-medium py-2 px-4 mr-2 rounded">
+            Rate This
+          </button>
+        </Link>
+        <Link href={`/movies/${id}`}>
+          <button className="bg-slate-800 opacity-90 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded">
+            + Add To Your List
+          </button>
+        </Link>
       </div>
     </div>
   );

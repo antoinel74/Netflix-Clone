@@ -1,70 +1,37 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { fetchSearchResults, Movie } from "@/utils/request";
 import Card from "@/app/components/Card";
 
-const SearchPage = () => {
+const SearchResultPage = () => {
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
-  const [query, setQuery] = useState("");
+  const queryParams = useSearchParams();
 
   useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const queryParam = urlParams.get("query") || "";
+    const query = queryParams.get("query") || "";
 
-    setQuery(queryParam);
-
-    const getSearchResults = async () => {
-      try {
-        if (queryParam) {
-          const details = await fetchSearchResults(queryParam);
-          setSearchResults(details);
-        }
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-      }
-    };
-    getSearchResults();
-  }, []);
-
-  useEffect(() => {
-    const getSearchResults = async () => {
-      try {
-        if (query) {
-          const details = await fetchSearchResults(query);
-          setSearchResults(details);
-        }
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-      }
-    };
-
-    getSearchResults();
-  }, [query]);
-
-  if (!searchResults) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <div
-          className="w-12 h-12 rounded-full animate-spin
-        border border-solid border-gray-600 border-t-transparent"
-        ></div>
-      </div>
-    );
-  }
+    if (query) {
+      fetchSearchResults(query)
+        .then((data: Movie[]) => {
+          setSearchResults(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching results:", error);
+        });
+    }
+  }, [queryParams]);
 
   return (
     <div className="mx-12 mt-12 py-12">
-      <h2 className="text-xl mb-6 font-medium">
-        Search results for &quot; {query} &quot; :
-      </h2>
+      <h2 className="text-xl mb-6 font-medium">Search results :</h2>
       <div className="flex sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-1/2 overflow-x-auto w-full hide-scrollbar cursor-pointer mb-8 lg:mb-16">
-        {searchResults.map((movie: Movie) => (
-          <Card key={movie.id} {...movie} />
+        {searchResults.map((result) => (
+          <Card key={result.id} {...result} />
         ))}
       </div>
     </div>
   );
 };
 
-export default SearchPage;
+export default SearchResultPage;

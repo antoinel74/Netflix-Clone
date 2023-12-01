@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="w-full px-12">
-      <div className=" grid grid-cols-1 md:grid-cols-4 gap-6 leading-8 border-zinc-700 border-t my-24">
+      <div className=" grid grid-cols-1 md:grid-cols-4 gap-6 leading-8 border-zinc-700 border-t my-12">
         {" "}
         <div className="md:col-span-4 ml-6 lg:ml-0 py-4 mt-12">
           <div className="flex gap-2">
@@ -57,7 +57,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="md:col-span-1 hidden md:block  pb-12">
+        <div className="md:col-span-1 hidden md:block">
           <ul>
             <li>
               <a href="/" className="opacity-70 hover:opacity-90">

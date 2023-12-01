@@ -11,6 +11,9 @@ function Searchbar() {
     const searchInputValue = searchInputRef.current?.value;
     if (searchInputValue) {
       router.push(`/movies/search?query=${searchInputValue}`);
+      if (searchInputRef.current) {
+        searchInputRef.current.value = "";
+      }
     }
   };
 

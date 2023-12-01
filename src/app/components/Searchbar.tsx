@@ -28,7 +28,6 @@ function Searchbar() {
         className="relative m-0 block flex-auto rounded-sm bg-transparent bg-clip-padding px-3 py-[0.25rem] leading-[1.6] text-neutral-600 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-200 focus:outline-none placeholder:text-neutral-400"
         placeholder="Search"
         aria-label="Search"
-        aria-describedby="button-addon2"
       />
       <span
         className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-neutral-200"

@@ -12,7 +12,7 @@ function Navbar() {
           <a href="/" className="opacity-80 hover:opacity-100">
             Movies
           </a>
-          <a href="/" className="opacity-80 hover:opacity-100">
+          <a href="/mylist" className="opacity-80 hover:opacity-100">
             My List
           </a>
         </div>

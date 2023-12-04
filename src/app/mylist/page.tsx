@@ -5,7 +5,7 @@ const MyList = () => {
     <div className="flex flex-col justify-center items-center min-h-[500px]">
       <h2 className="text-xl mb-6 font-medium">My List :</h2>
       <p className="text-red-600 text-center mx-12">
-        I'm working on this features ! Come later to check it out{" "}
+        I&apos;m working on this features ! Come later to check it out{" "}
       </p>
     </div>
   );

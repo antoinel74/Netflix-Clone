@@ -14,6 +14,7 @@ export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [actionMovies, setActionMovies] = useState<Movie[]>([]);
   const [documentaries, setDocumentaries] = useState<Movie[]>([]);
+  const [scienceFiction, setScienceFiction] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -22,10 +23,12 @@ export default function Home() {
         const fetchedMovies: Movie[] = await fetchTrendingMovies();
         const fetchedActionMovies: Movie[] = await fetchMovieByGender(28);
         const fetchedDocumentaries: Movie[] = await fetchMovieByGender(99);
+        const fetchedScienceFiction: Movie[] = await fetchMovieByGender(878);
 
         setMovies(fetchedMovies);
         setActionMovies(fetchedActionMovies);
         setDocumentaries(fetchedDocumentaries);
+        setScienceFiction(fetchedScienceFiction);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching movies:", error);
@@ -48,6 +51,10 @@ export default function Home() {
           <Hero {...movies[0]} />
           <TrendingMovies movies={movies} />
           <MoviesListByGender movies={actionMovies} divTitle="Action Movies" />
+          <MoviesListByGender
+            movies={scienceFiction}
+            divTitle="Science-Fiction Movies"
+          />
           <div>{randMovie && <Hero {...randMovie} />}</div>
           <MoviesListByGender movies={documentaries} divTitle="Documentaries" />
         </>

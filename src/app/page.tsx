@@ -5,12 +5,10 @@ import {
   fetchMovieByGender,
   fetchTrendingMovies,
 } from "@/utils/request";
-import Card from "./components/Card";
 import Hero from "./components/Hero";
 import { TrendingMovies } from "./components/TrendingMovies";
 import { Loader } from "./components/Loader";
-import { ActionMovies } from "./components/ActionMovies";
-import { Documentaries } from "./components/Documentaries";
+import { MoviesListByGender } from "./components/MoviesListByGender";
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -49,9 +47,9 @@ export default function Home() {
         <>
           <Hero {...movies[0]} />
           <TrendingMovies movies={movies} />
-          <ActionMovies actionMovies={actionMovies} />
+          <MoviesListByGender movies={actionMovies} divTitle="Action Movies" />
           <div>{randMovie && <Hero {...randMovie} />}</div>
-          <Documentaries documentaries={documentaries} />
+          <MoviesListByGender movies={documentaries} divTitle="Documentaries" />
         </>
       )}
     </div>

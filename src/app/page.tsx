@@ -50,13 +50,22 @@ export default function Home() {
         <>
           <Hero {...movies[0]} />
           <TrendingMovies movies={movies} />
-          <MoviesListByGender movies={actionMovies} divTitle="Action Movies" />
+          <MoviesListByGender
+            movies={actionMovies}
+            divTitle="Action Movies"
+            divID="actionMovies"
+          />
+          <div>{randMovie && <Hero {...randMovie} />}</div>
           <MoviesListByGender
             movies={scienceFiction}
             divTitle="Science-Fiction Movies"
+            divID="SFMovies"
           />
-          <div>{randMovie && <Hero {...randMovie} />}</div>
-          <MoviesListByGender movies={documentaries} divTitle="Documentaries" />
+          <MoviesListByGender
+            movies={documentaries}
+            divTitle="Documentaries"
+            divID="docu"
+          />
         </>
       )}
     </div>

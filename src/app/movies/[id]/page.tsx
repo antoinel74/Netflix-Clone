@@ -83,12 +83,12 @@ const MovieDetailsView = () => {
         <p className="mt-6">
           Genre : <span className="font-light ml-1 text-white opacity-70">{movieDetails.genres[0].name}</span>
         </p>
-        <button className="mt-8 bg-white hover:bg-slate-200 text-black font-medium py-2 px-4 mr-2 rounded">
+        <button className="mt-8 bg-white text-black hover:brightness-90 font-medium py-2 px-4 mr-2 rounded">
           Rate This
         </button>
         <button
           onClick={toggleMovieInList}
-          className="bg-slate-800 opacity-90 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded"
+          className="bg-zinc-800/50 hover:bg-zinc-800/75 font-medium py-2 px-4 rounded"
         >
           {inList ? "- Remove From My List" : "+ Add To My List"}
         </button>

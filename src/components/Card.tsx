@@ -9,7 +9,7 @@ function Card({ id, title, poster_path, release_date, vote_average }: Movie) {
       <div key={id} className="relative bg-dark flex flex-col mr-4 min-w-[200px] lg:min-w-[250px]">
         <Link href={"/movies/" + id}>
           <img
-            className="h-50 max-h-[400px] w-auto object-contains object-center transition-opacity duration-220 rounded-sm"
+            className="h-50 md:max-h-[400px] w-auto object-contains object-center transition-opacity duration-220 rounded-sm"
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt={title}
           />

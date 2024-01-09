@@ -5,26 +5,12 @@ import { useParams } from "next/navigation";
 import { convertDateFormat } from "@/utils/convertDate";
 import Card from "@/components/Card";
 import { addToLocalStorage } from "@/utils/localStorage";
+import { Loader } from "@/components/Loader";
 
 const MovieDetailsView = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
   const [similarMovies, setSimilarMovies] = useState<MovieDetails[]>([]);
-
-  const maskStyle = {
-    WebkitMaskImage: `linear-gradient(
-              rgba(0, 0, 0, 0) 0%,
-              rgba(0, 0, 0, 1) 40%,
-              rgba(0, 0, 0, 1) 60%,
-              rgba(0, 0, 0, 0) 100%
-            )`,
-    maskImage: `linear-gradient(
-              rgba(0, 0, 0, 0) 0%,
-              rgba(0, 0, 0, 1) 40%,
-              rgba(0, 0, 0, 1) 60%,
-              rgba(0, 0, 0, 0) 100%
-            )`,
-  };
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -50,14 +36,7 @@ const MovieDetailsView = () => {
   }, [id]);
 
   if (!movieDetails) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <div
-          className="w-12 h-12 rounded-full animate-spin
-      border border-solid border-gray-600 border-t-transparent"
-        ></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
@@ -65,9 +44,8 @@ const MovieDetailsView = () => {
       <figure className="relative w-full h-screen flex justify-center items-center">
         {" "}
         <img
-          className="absolute w-full h-full bg-cover bg-center object-cover opacity-60"
+          className="absolute w-full h-full bg-cover bg-center object-cover opacity-60 maskStyle"
           src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
-          style={maskStyle}
         ></img>
       </figure>
 
@@ -98,7 +76,7 @@ const MovieDetailsView = () => {
         <h3 className="text-xl mb-4">Similar Movies</h3>
         <div className="mb-4 flex whitespace-nowrap sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 overflow-x-auto w-full hide-scrollbar cursor-pointer">
           {similarMovies.slice(0, 10).map((movie: MovieDetails) => (
-            <Card title={movie.original_title} key={movie.id} {...movie} />
+            <Card key={movie.id} {...movie} />
           ))}
         </div>
       </div>

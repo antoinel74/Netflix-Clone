@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import { Movie } from "@/utils/request";
+import { emptyLocalStorage } from "@/utils/localStorage";
 
 const MyList = () => {
   const [movieList, setMovieList] = useState([]);
@@ -18,10 +19,12 @@ const MyList = () => {
     retrieveMovieList();
   }, []);
 
-  console.log(movieList);
+  const handleEmptyList = () => {
+    emptyLocalStorage(setMovieList);
+  };
 
   return (
-    <div className="flex flex-col justify-center min-h-[500px] py-12 px-6">
+    <div className="flex flex-col justify-center min-h-[500px] py-8 px-6">
       {movieList && movieList.length > 0 ? (
         <>
           <h2 className="text-xl mb-6 font-medium">My List :</h2>
@@ -30,6 +33,9 @@ const MyList = () => {
               <Card key={movie.id} {...movie} />
             ))}
           </div>
+          <button onClick={handleEmptyList} className="mr-auto py-2 px-4 border hover:opacity-100 opacity-80">
+            Empty List
+          </button>
         </>
       ) : (
         <p className="text-xl text-center">Your list is empty</p>

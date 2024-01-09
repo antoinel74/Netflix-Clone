@@ -30,13 +30,28 @@ export interface Movie {
   poster_path: string;
   popularity: number;
   vote_average: number;
+  vote_count: number;
   release_date: string;
   backdrop_path: string;
+  runtime: number;
   genres: Genre[];
 }
 
 export interface MovieDetails {
   id: number;
+  title: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  popularity: number;
+  vote_average: number;
+  vote_count: number;
+  release_date: string;
+  backdrop_path: string;
+  runtime: number;
+  genres: Genre[];
+  /*   id: number;
+  title: string;
   original_title: string;
   overview: string;
   poster_path: string;
@@ -46,7 +61,7 @@ export interface MovieDetails {
   vote_count: number;
   popularity: number;
   runtime: number;
-  genres: Genre[];
+  genres: Genre[]; */
 }
 
 export interface SimilarMovies {
@@ -63,10 +78,7 @@ export interface SimilarMovies {
 // FETCHING //
 export const fetchTrendingMovies = async (): Promise<Movie[]> => {
   try {
-    const response = await fetch(
-      "https://api.themoviedb.org/3/trending/movie/week",
-      options
-    );
+    const response = await fetch("https://api.themoviedb.org/3/trending/movie/week", options);
     if (!response.ok) {
       throw new Error("Network error");
     }
@@ -81,14 +93,9 @@ export const fetchTrendingMovies = async (): Promise<Movie[]> => {
   }
 };
 
-export const fetchMovieDetails = async (
-  movieId: number
-): Promise<MovieDetails> => {
+export const fetchMovieDetails = async (movieId: number): Promise<MovieDetails> => {
   try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
-      options
-    );
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options);
     if (!response.ok) {
       throw new Error("Network error");
     }
@@ -100,9 +107,7 @@ export const fetchMovieDetails = async (
   }
 };
 
-export const fetchSimilarMovies = async (
-  movieId: number
-): Promise<SimilarMovies> => {
+export const fetchSimilarMovies = async (movieId: number): Promise<SimilarMovies> => {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
@@ -119,9 +124,7 @@ export const fetchSimilarMovies = async (
   }
 };
 
-export const fetchMovieByGender = async (
-  genderId: number
-): Promise<Movie[]> => {
+export const fetchMovieByGender = async (genderId: number): Promise<Movie[]> => {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=%20${genderId}`,
@@ -139,9 +142,7 @@ export const fetchMovieByGender = async (
   }
 };
 
-export const fetchSearchResults = async (
-  searchInput: string
-): Promise<Movie[]> => {
+export const fetchSearchResults = async (searchInput: string): Promise<Movie[]> => {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${searchInput}&include_adult=false&language=en-US&page=1`,

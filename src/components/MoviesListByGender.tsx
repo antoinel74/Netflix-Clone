@@ -9,11 +9,7 @@ interface MoviesListByGenderProps {
   divID: string;
 }
 
-export const MoviesListByGender: React.FC<MoviesListByGenderProps> = ({
-  movies,
-  divTitle,
-  divID,
-}) => {
+export const MoviesListByGender: React.FC<MoviesListByGenderProps> = ({ movies, divTitle, divID }) => {
   return (
     <div className="mx-10 relative ">
       <h2 className="text-xl mb-4 font-medium">{divTitle}</h2>

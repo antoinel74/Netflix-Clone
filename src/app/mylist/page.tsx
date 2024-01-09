@@ -10,7 +10,6 @@ const MyList = () => {
   useEffect(() => {
     const retrieveMovieList = () => {
       const movieListJSON = localStorage.getItem("movieList");
-
       if (movieListJSON) {
         const parsedMovieList = JSON.parse(movieListJSON);
         setMovieList(parsedMovieList);

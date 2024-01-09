@@ -32,10 +32,7 @@ const InputWithButton: React.FC<InputWithButtonProps> = ({
             className="bg-transparent focus:outline-none border-solid border rounded-sm border-neutral-700"
             placeholder={placeholder}
           />
-          <button
-            className="ml-2 text-green-400 hover:text-green-600"
-            onClick={onSave}
-          >
+          <button className="ml-2 text-green-400 hover:text-green-600" onClick={onSave}>
             Save
           </button>
         </div>
@@ -44,10 +41,7 @@ const InputWithButton: React.FC<InputWithButtonProps> = ({
           {value}{" "}
           <button className="hover:text-gray-400" onClick={handleEdit}>
             {" "}
-            <img
-              src="/icons/pen-solid.svg"
-              className="ml-2 w-1/2 opacity-70 hover:opacity-100"
-            />
+            <img src="/icons/pen-solid.svg" className="ml-2 w-1/2 opacity-70 hover:opacity-100" />
           </button>
         </p>
       )}

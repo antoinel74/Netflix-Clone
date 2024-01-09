@@ -2,11 +2,11 @@ import React from "react";
 import { convertDateFormat } from "@/utils/convertDate";
 import { MovieDetails } from "@/utils/request";
 import Link from "next/link";
-import { addToLocalStorage } from "@/utils/localStorage";
+import { onAdd } from "@/utils/localStorage";
 
 function Hero({ id, title, backdrop_path, overview, vote_average, release_date }: MovieDetails) {
   const handleAddToList = (movies: MovieDetails) => {
-    addToLocalStorage(movies);
+    onAdd(movies);
   };
 
   return (

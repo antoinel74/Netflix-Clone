@@ -77,9 +77,7 @@ function Footer() {
           </ul>
         </div>
         <div className="md:col-span-1 hidden lg:block mx-auto">
-          <button className="border p-1 px-2 rounded-sm opacity-70 hover:bg-zinc-800">
-            Subscribe Now
-          </button>
+          <button className="border p-1 px-2 rounded-sm opacity-70 hover:bg-zinc-800">Subscribe Now</button>
         </div>
       </div>
     </div>

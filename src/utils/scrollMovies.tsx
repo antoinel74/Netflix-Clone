@@ -1,11 +1,3 @@
-/* export const scrollMovies = (containerId: string, scrollAmount: number) => {
-  const container = document.getElementById(containerId);
-  if (container) {
-    container.scrollLeft += scrollAmount;
-  }
-};
- */
-
 export const scrollMovies = (containerId: string, scrollAmount: number) => {
   const container = document.getElementById(containerId);
   if (container) {

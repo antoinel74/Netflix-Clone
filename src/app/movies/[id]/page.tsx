@@ -4,13 +4,14 @@ import { MovieDetails, fetchMovieDetails, fetchSimilarMovies } from "@/utils/req
 import { useParams } from "next/navigation";
 import { convertDateFormat } from "@/utils/convertDate";
 import Card from "@/components/Card";
-import { addToLocalStorage } from "@/utils/localStorage";
+import { onAdd, onRemove } from "@/utils/localStorage";
 import { Loader } from "@/components/Loader";
 
 const MovieDetailsView = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
   const [similarMovies, setSimilarMovies] = useState<MovieDetails[]>([]);
+  const [inList, setInList] = useState(false);
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -35,14 +36,34 @@ const MovieDetailsView = () => {
     getMovieDetails();
   }, [id]);
 
+  useEffect(() => {
+    // Check if movie is in local storage
+    const movieInLocalStorage = localStorage.getItem("movieList");
+
+    if (movieInLocalStorage) {
+      const movies = JSON.parse(movieInLocalStorage);
+      const isInStoredList = movies.some((movie: MovieDetails) => movie.id === movieDetails?.id);
+      setInList(isInStoredList);
+    }
+  }, [movieDetails]);
+
   if (!movieDetails) {
     return <Loader />;
   }
 
+  const toggleMovieInList = () => {
+    if (inList) {
+      onRemove(movieDetails);
+      setInList(false);
+    } else {
+      onAdd(movieDetails);
+      setInList(true);
+    }
+  };
+
   return (
     <div className="relative w-full">
       <figure className="relative w-full h-screen flex justify-center items-center">
-        {" "}
         <img
           className="absolute w-full h-full bg-cover bg-center object-cover opacity-60 maskStyle"
           src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
@@ -66,10 +87,10 @@ const MovieDetailsView = () => {
           Rate This
         </button>
         <button
-          onClick={() => addToLocalStorage(movieDetails)}
+          onClick={toggleMovieInList}
           className="bg-slate-800 opacity-90 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded"
         >
-          + Add To Your List
+          {inList ? "- Remove From My List" : "+ Add To My List"}
         </button>
       </div>
       <div className="w-full px-10 -mt-36">

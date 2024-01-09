@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import InputWithButton from "../components/InputWithBtn";
+import InputWithButton from "../../components/InputWithBtn";
 
 function Account() {
   const [editingName, setEditingName] = useState(false);

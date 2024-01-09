@@ -28,3 +28,17 @@ body {
 .hide-scrollbar {
   scrollbar-width: none;
 }
+
+.search-input {
+  width: 100px;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  padding: 0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Define expanded styles for the input when focused */
+.search-input:focus {
+  width: 320px;
+  outline: none;
+}

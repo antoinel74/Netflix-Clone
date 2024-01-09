@@ -1,13 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  MovieDetails,
-  fetchMovieDetails,
-  fetchSimilarMovies,
-} from "@/utils/request";
+import { MovieDetails, fetchMovieDetails, fetchSimilarMovies } from "@/utils/request";
 import { useParams } from "next/navigation";
 import { convertDateFormat } from "@/utils/convertDate";
-import Card from "@/app/components/Card";
+import Card from "@/components/Card";
+import { addToLocalStorage } from "@/utils/localStorage";
 
 const MovieDetailsView = () => {
   const { id } = useParams();
@@ -75,31 +72,25 @@ const MovieDetailsView = () => {
       </figure>
 
       <div className="absolute z-2 absolute top-1/4 left-4 transform -translate-y-1/4 mx-2 sm:mx-10">
-        <h2 className="text-4xl font-semibold">
-          {movieDetails.original_title}
-        </h2>
+        <h2 className="text-4xl font-semibold">{movieDetails.original_title}</h2>
         <p className="font-semibold text-lime-600 mb-4 mt-2">
           {(movieDetails.vote_average * 10).toFixed()}% Positive
           <span className="font-light ml-1 text-white opacity-70">
             | {convertDateFormat(movieDetails.release_date)}
           </span>
-          <span className="font-light ml-1 text-white opacity-70">
-            | {movieDetails.runtime} min
-          </span>
+          <span className="font-light ml-1 text-white opacity-70">| {movieDetails.runtime} min</span>
         </p>
-        <p className="w-full text-sm xl:text-base sm:w-4/6 hidden lg:block">
-          {movieDetails.overview}
-        </p>
+        <p className="w-full text-sm xl:text-base sm:w-4/6 hidden lg:block">{movieDetails.overview}</p>
         <p className="mt-6">
-          Genre :{" "}
-          <span className="font-light ml-1 text-white opacity-70">
-            {movieDetails.genres[0].name}
-          </span>
+          Genre : <span className="font-light ml-1 text-white opacity-70">{movieDetails.genres[0].name}</span>
         </p>
         <button className="mt-8 bg-white hover:bg-slate-200 text-black font-medium py-2 px-4 mr-2 rounded">
           Rate This
         </button>
-        <button className="bg-slate-800 opacity-90 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded">
+        <button
+          onClick={() => addToLocalStorage(movieDetails)}
+          className="bg-slate-800 opacity-90 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded"
+        >
           + Add To Your List
         </button>
       </div>
